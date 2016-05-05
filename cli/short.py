@@ -14,7 +14,18 @@ links = db['links']
 ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 DEFAULT_KEY_LENGTH = 6
 
-HELP_TEXT = 'help text'
+HELP_TEXT = '''short: An extremely simple URL shortener.
+
+The short CLI allows for creation of both custom and generated shortlinks.
+
+Commands:
+    add <key> <url> Add a new custom shortlink pointing to url.
+    generate <url>  Generate a new random shortlink pointing to url.
+    help            Print this text.
+    list            List all shortlinks.
+    remove <key>    Remove the shortlink with this key.
+    show <key>      Show the URL associated with this key.
+'''
 
 def random_str(alphabet, length):
     s = ''
@@ -62,20 +73,11 @@ def main():
         while links.find({'key': key}).count() > 0:
             key = random_str(ALPHABET, DEFAULT_KEY_LENGTH)
         links.insert({'key': key, 'url': url})
-    else:
+    elif cmd == 'help':
         print(HELP_TEXT)
-
-
-'''
-    if args.field:
-        if args.update:
-            with open(args.update, 'r') as f:
-                value = f.read().strip()
-            posts.find_one_and_update({'link': args.link},
-                                      {'$set': {args.field: value}})
-        print(posts.find_one({'link': args.link})[args.field])
     else:
-        print_pretty(posts.find_one({'link': args.link}))
-'''
+        print('short: Unrecognized command \'{}\'. Try \'short help\'.'
+                .format(cmd))
+
 if __name__ == '__main__':
     main()
