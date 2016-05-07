@@ -33,6 +33,12 @@ def random_str(alphabet, length):
         s += alphabet[random.randint(0, len(alphabet) - 1)]
     return s
 
+def is_valid_key(key):
+    for c in key:
+        if c not in ALPHABET:
+            return False
+    return True
+
 def main():
     try:
         cmd = sys.argv[1]
@@ -47,6 +53,8 @@ def main():
         existing_link = links.find_one({'key': key})
         if existing_link:
             print('Link already exists -> {}'.format(existing_link['url']))
+        elif not is_valid_key(key):
+            print('Key is invalid.')
         else:
             links.insert({'key': key, 'url': url})
     elif cmd == 'show':
@@ -62,11 +70,10 @@ def main():
     elif cmd == 'remove':
         key = sys.argv[2]
         result = links.remove({'key': key})
-        if result.n > 0:
-            print('Found and removed {}'.format(key))
+        if result['n'] > 0:
+            print('Found and removed \'{}\'.'.format(key))
         else:
-            print('Did not find and links with key {}'.format(key))
-        print(result)
+            print('Did not find any links with key \'{}\'.'.format(key))
     elif cmd == 'generate':
         url = sys.argv[2]
         key = random_str(ALPHABET, DEFAULT_KEY_LENGTH)
