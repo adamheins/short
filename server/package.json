@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "prestart": "./sh/prestart.sh",
-    "start": "./sh/start.sh",
-    "stop": "./sh/stop.sh"
+    "start": "./sh/start.bash",
+    "stop": "./sh/stop.bash"
   },
   "dependencies": {
     "express": "~4.13.1",
