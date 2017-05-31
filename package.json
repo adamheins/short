@@ -1,17 +1,16 @@
 {
-  "name": "ahns.co",
-  "version": "1.0.0",
+  "name": "short",
+  "version": "1.1.0",
   "description": "A really simple URL shortener.",
   "author": "Adam Heins <mail@adamheins.com>",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prestart": "./sh/prestart.sh",
     "start": "./sh/start.bash",
     "stop": "./sh/stop.bash"
   },
   "dependencies": {
     "express": "~4.13.1",
-    "mongoose": "3.8.x"
+    "js-yaml": "^3.8.4"
   }
 }
