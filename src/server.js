@@ -1,8 +1,8 @@
 'use strict';
 
-let express = require('express');
+const express = require('express');
 
-let links = require('./links');
+const links = require('./links');
 links.load('links.yaml');
 
 let app = express();

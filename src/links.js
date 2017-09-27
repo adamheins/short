@@ -1,14 +1,15 @@
 'use strict';
 
-let fs = require('fs');
-let yaml = require('js-yaml');
+
+const fs = require('fs');
+const yaml = require('js-yaml');
 
 
 let links = {};
 
 
 module.exports.load = function(filePath) {
-     links = yaml.safeLoad(fs.readFileSync(filePath, 'utf8'));
+    links = yaml.safeLoad(fs.readFileSync(filePath, 'utf8'));
 };
 
 
